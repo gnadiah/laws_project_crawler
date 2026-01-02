@@ -10,3 +10,5 @@ pandas
 tqdm
 sendgrid
 python-dateutil
+fake-useragent
+cloudscraper

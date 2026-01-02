@@ -158,7 +158,8 @@ def crawl(root_path, version, keep_record, check_duplicate,
                                      current_version_path=root_path + version,
                                      keep_official_number_record=keep_record,
                                      check_duplicate=check_duplicate,
-                                     record_to_check_file=record_to_check_file)
+                                     record_to_check_file=record_to_check_file,
+                                     max_workers=5)
 
         timer2 = time.time() - start
 

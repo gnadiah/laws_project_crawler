@@ -1,14 +1,21 @@
 import requests
 import re
+import time
+import random
+import cloudscraper
+from fake_useragent import UserAgent
 
 from bs4 import BeautifulSoup
 
+scraper = cloudscraper.create_scraper()
+ua = UserAgent()
 
 def load_url(url, return_content=False):
+    time.sleep(random.uniform(1, 2))
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+        'User-Agent': ua.random
     }
-    response = requests.get(url, headers=headers)
+    response = scraper.get(url, headers=headers)
     try:
         response.raise_for_status()
         if not return_content:
