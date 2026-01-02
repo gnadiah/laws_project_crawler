@@ -188,8 +188,12 @@ def run_crawl_auto(import_after_finished=False):
     global VERSION
     while True:  # remove loop for manual
         FILE_VERSION = str(VERSION)[:10].replace("-", "") + "_" + str(VERSION)[11:19].replace(":", "")
-        THUVIENPHAPLUAT_ROOTPATH = "/home/nguyennam/Downloads/My project/laws_project_crawler/crawler/thuvienphapluat.vn/"
-        VBPL_ROOTPATH = "/home/nguyennam/Downloads/My project/laws_project_crawler/crawler/vbpl.vn/"
+        # Use relative path for portability
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        CRAWLER_DATA_DIR = os.path.join(BASE_DIR, "crawler_data")
+        
+        THUVIENPHAPLUAT_ROOTPATH = os.path.join(CRAWLER_DATA_DIR, "thuvienphapluat.vn/")
+        VBPL_ROOTPATH = os.path.join(CRAWLER_DATA_DIR, "vbpl.vn/")
 
         print("Đang crawl sitemap và url thuvienphapluat.vn...")
         timer_extract_first = store_sitemaps_and_urls__thuvienphapluat(THUVIENPHAPLUAT_ROOTPATH+FILE_VERSION)
@@ -225,14 +229,18 @@ def run_crawl_auto(import_after_finished=False):
 
         if is_sleppy_1 == 0 or is_sleppy_2 == 0:
             print("Đang ngủ...")
-            countdown(10) #sleep for 2 days
+            countdown(43200) #sleep for 12 hours
 
         VERSION = str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 def run_crawl_manual():
     FILE_VERSION = str(VERSION)[:10].replace("-", "") + "_" + str(VERSION)[11:19].replace(":", "")
-    THUVIENPHAPLUAT_ROOTPATH = "/home/nguyennam/Downloads/My project/laws_project_crawler/crawler/thuvienphapluat.vn/"
-    VBPL_ROOTPATH = "/home/nguyennam/Downloads/My project/laws_project_crawler/crawler/vbpl.vn/"
+    # Use relative path for portability
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    CRAWLER_DATA_DIR = os.path.join(BASE_DIR, "crawler_data")
+    
+    THUVIENPHAPLUAT_ROOTPATH = os.path.join(CRAWLER_DATA_DIR, "thuvienphapluat.vn/")
+    VBPL_ROOTPATH = os.path.join(CRAWLER_DATA_DIR, "vbpl.vn/")
 
     print("Đang crawl sitemap và url...")
     timer_extract_first = store_sitemaps_and_urls__thuvienphapluat(THUVIENPHAPLUAT_ROOTPATH+FILE_VERSION)
