@@ -44,7 +44,7 @@ def store_sitemaps_and_urls__thuvienphapluat(root_path):  # , sitemap_dir, url_f
     start = time.time()
     sitemap_urls = get_all_sitemaps_url("https://thuvienphapluat.vn/sitemap.xml")
     for sitemap_url in tqdm(sitemap_urls[10:11], total=len(sitemap_urls[10:11])):
-        file_name = root_path + "/sitemaps/sitemaps_part" + re.findall("(\d+)", sitemap_url)[0] + ".xml"
+        file_name = root_path + "/sitemaps/sitemaps_part" + re.findall(r"(\d+)", sitemap_url)[0] + ".xml"
         write_to_record(load_url(sitemap_url, return_content=True).prettify(), file_name)
         document_urls = get_all_document_url(sitemap_url)
 

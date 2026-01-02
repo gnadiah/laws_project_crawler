@@ -55,7 +55,7 @@ def extract_raw_text_from_html(html_text):
         return ""
     else:
         text = html2text.html2text(html_text)
-        text = re.sub('(\*|\||\_|\-)', '', text)
+        text = re.sub(r'(\*|\||\_|\-)', '', text)
         text = text.replace("\\", "")
         text = re.sub(r'\n\s*\n', '\n\n', text)
         return keep_one_white_space(text)
